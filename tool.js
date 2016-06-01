@@ -85,6 +85,11 @@ time:2014年12月12日14:03:08
         return dir ;
     };
 
+    /**
+     * 简单的ajax  get 请求
+     * @param url string
+     * @param fn callback
+     */
     Ftool.getJSON=function(url,fn){
 
         var request = new XMLHttpRequest();
@@ -168,7 +173,6 @@ time:2014年12月12日14:03:08
             if (self.option.click) {
                 self.option.onClose()
             }
-            ;
         }, false)
 
     }
