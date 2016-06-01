@@ -17,13 +17,12 @@ time:2014年12月12日14:03:08
 
     	/**
 		 * 打乱数组元素
-		 *	
-    	*/ 
-
+         *
+         */
     	upset:	function(arr){
     		return arr.sort(function() { Math.random() - 0.5 })
     	}
-    } 
+    };
 
 
    // Ftool.IS_TXT = ua.indexOf('PATXT') != -1;
@@ -108,9 +107,97 @@ time:2014年12月12日14:03:08
         request.send();
     };
 
-    
+    /**
+     * time:2015年12月10日14:31:15
+     * version: 0.1.2
+     *
+     *
+     * Update time：2015年5月8日16:31:50
+     * 全屏阴影模块
+     * option：
+     * {
+     *  id: '' ,       //id
+     *  click: true , // 点击是否取消  ,默认false
+     *  csstext : ''  // css ,
+     *
+     *  onOpen:function(){},
+     *  onClose:function(){}
+     * }
+     *
+     * @param option
+     * @constructor
+     * .js-shadow{ position:absolute;left:0;top:0;width:100%; background:rgba(0,0,0,.4); z-index: 100;}
+     */
 
-   
+    function Shadow(parse) {
+        var self = this;
+
+        self.option = {
+            id: '',
+            cssText: '',
+            click: false,
+            onOpen: function () {
+            },
+            onClose: function () {
+            }
+        };
+
+        for (var i in parse) {
+            self.option[i] = parse[i];
+        }
+
+        self.shadow = document.createElement('div');
+        self.in = false;
+        //设置id 供外部使用
+        self.shadow.id = self.option.id;
+
+        // 设置 样式
+        //self.shadow.className = 'js-shadow' ;
+        self.shadow.style.cssText = 'position:absolute;left:0;top:0;width:100%; background:rgba(0,0,0,.4); z-index: 100;' + self.option.csstext;
+        self.shadow.style.height = document.body.scrollHeight + 'px';
+
+        // 设置是否 点击关闭
+        if (self.option.click) {
+            self.shadow.onclick = function () {
+                document.body.removeChild(self.shadow);
+                self.in = false;
+            }
+        }
+        //监听onclick 事件
+        self.shadow.addEventListener('click', function () {
+            if (self.option.click) {
+                self.option.onClose()
+            }
+            ;
+        }, false)
+
+    }
+
+    Shadow.prototype.open = function (callback) {
+        var self = this;
+        document.body.appendChild(self.shadow);
+        self.in = true;
+        if (callback) {
+            callback();
+        } else {
+            self.option.onOpen()
+        }
+    };
+    Shadow.prototype.close = function (callback) {
+        var self = this;
+        if (self.in) {
+            document.body.removeChild(self.shadow);
+            self.in = false;
+        }
+        if (callback) {
+            callback();
+        } else {
+            self.option.onClose()
+        }
+
+    };
+
+
 
 })(window);
 
