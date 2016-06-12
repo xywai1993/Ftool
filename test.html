@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+</head>
+<body>
+<input type="text" name="" id="text">
+<span id="num">0/400</span>
+
+<input type="text" name="" id="text2">
+<span id="num2">0/400</span>
+<script src="tool.js"></script>
+<script>
+    function MaxLength(input, target, max) {
+
+        var input = this.input = document.getElementById(input);
+        var target = this.target = document.getElementById(target);
+        var max = this.max = max;
+
+        input.addEventListener('focus', function () {
+            var self = this;
+            document.addEventListener('keyup', function () {
+
+                if (self.value.length > max) {
+                    self.value = self.value.substr(0, max);
+                    return
+                }
+                target.innerText = '' + self.value.length + '/' + max;
+            });
+        });
+    }
+
+    new MaxLength('text', 'num', 5);
+    new MaxLength('text2', 'num2', 400);
+</script>
+</body>
+</html>

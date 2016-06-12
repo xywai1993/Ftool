@@ -201,7 +201,31 @@ time:2014年12月12日14:03:08
 
     };
 
+    /**
+     * 显示当前字符数 以及控制最大输入字符
+     * @param input  输入框  id
+     * @param target  显示当前字符数的容器  id
+     * @param max   最大字符数 number
+     * @constructor
+     */
+    function MaxLength(input, target, max) {
 
+        var input = this.input = document.getElementById(input);
+        var target = this.target = document.getElementById(target);
+        var max = this.max = max;
+
+        input.addEventListener('focus', function () {
+            var self = this;
+            document.addEventListener('keyup', function () {
+
+                if (self.value.length > max) {
+                    self.value = self.value.substr(0, max);
+                    return
+                }
+                target.innerText = '' + self.value.length + '/' + max;
+            });
+        });
+    }
 
 })(window);
 
