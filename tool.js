@@ -24,7 +24,7 @@
          * 获取UR了参数
          * @returns {{}}
          */
-        getRequest: function () {
+        getRequest: function (key) {
             var search = location.search.slice(1); //得到get方式提交的查询字符串
             var arr = search.split("&");
             for (var i = 0; i < arr.length; i++) {
