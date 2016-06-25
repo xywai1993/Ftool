@@ -1,6 +1,4 @@
-/**
-time:2014年12月12日14:03:08
-*/
+
 ;(function(window){
     window.Ftool={} ;
 
@@ -21,7 +19,21 @@ time:2014年12月12日14:03:08
          */
     	upset:	function(arr){
     		return arr.sort(function() { Math.random() - 0.5 })
-    	}
+        },
+        /**
+         * 获取UR了参数
+         * @returns {{}}
+         */
+        getRequest: function () {
+            var search = location.search.slice(1); //得到get方式提交的查询字符串
+            var arr = search.split("&");
+            for (var i = 0; i < arr.length; i++) {
+                var ar = arr[i].split("=");
+                if (ar[0] == key) {
+                    return ar[1];
+                }
+            }
+        }
     };
 
 
