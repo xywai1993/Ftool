@@ -7,12 +7,27 @@
 
     Ftool.IS_IOS = ua.indexOf('IPHONE OS') != -1 ;
 
-    Ftool.IS_WECHAT = ua.indexOf('MICROMESSENGER') != -1; 
+    Ftool.IS_WECHAT = ua.indexOf('MICROMESSENGER') != -1;
 
+    Ftool.IS_PC=function() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+        }
+        return flag;
+    }();
 
-
-    Ftool = { 
-
+    Ftool = {
+        /**
+         * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
+         * @param value
+         * @returns {boolean}
+         */
+        isArray:function(value){
+            return Object.prototype.toString.call(value) == "[object Array]" ;
+        },
     	/**
 		 * 打乱数组元素
          *
@@ -22,7 +37,7 @@
         },
         /**
          * 获取UR了参数
-         * @returns {{}}
+         * @returns {}
          */
         getRequest: function (key) {
             var search = location.search.slice(1); //得到get方式提交的查询字符串
@@ -43,7 +58,7 @@
      * 获取滑动的方向
      * @param element  在哪个元素上
      * @param num   滑动的灵敏度 数字越低 灵敏度越高
-     * @returns {{dir: null, isTouch: boolean}}
+     * @returns {dir: null, isTouch: boolean}
      */
     Ftool.touchDirection=function(element,num){
         var startX= 0,
@@ -222,9 +237,9 @@
      */
     function MaxLength(input, target, max) {
 
-        var input = this.input = document.getElementById(input);
-        var target = this.target = document.getElementById(target);
-        var max = this.max = max;
+        var input = this.input = document.getElementById(input),
+         target = this.target = document.getElementById(target),
+         max = this.max = max;
 
         input.addEventListener('focus', function () {
             var self = this;
@@ -238,6 +253,7 @@
             });
         });
     }
+
 
 })(window);
 
