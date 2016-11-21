@@ -1,25 +1,14 @@
+/**
+ * author yiper
+ */
+
 
 ;(function(window){
     window.Ftool={} ;
 
     var ua = navigator.userAgent.toUpperCase() ;
-    Ftool.IS_ANDROID = ua.indexOf('ANDROID') != -1 ;
 
-    Ftool.IS_IOS = ua.indexOf('IPHONE OS') != -1 ;
-
-    Ftool.IS_WECHAT = ua.indexOf('MICROMESSENGER') != -1;
-
-    Ftool.IS_PC=function() {
-        var userAgentInfo = navigator.userAgent;
-        var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-        var flag = true;
-        for (var v = 0; v < Agents.length; v++) {
-            if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
-        }
-        return flag;
-    }();
-
-    Ftool = {
+    window.Ftool = {
         /**
          * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
          * @param value
@@ -51,6 +40,22 @@
         }
     };
 
+
+    Ftool.IS_ANDROID = ua.indexOf('ANDROID') != -1 ;
+
+    Ftool.IS_IOS = ua.indexOf('IPHONE OS') != -1 ;
+
+    Ftool.IS_WECHAT = ua.indexOf('MICROMESSENGER') != -1;
+
+    Ftool.IS_PC=function() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+        var flag = true;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) { flag = false; break; }
+        }
+        return flag;
+    }();
 
    // Ftool.IS_TXT = ua.indexOf('PATXT') != -1;
 
