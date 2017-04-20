@@ -8,7 +8,7 @@
 
 	var ua = navigator.userAgent.toUpperCase();
 
-	window.Ftool = {
+	let Ftool = {
         /**
          * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
          * @param value
@@ -185,7 +185,7 @@
 			endX = 0,
 			endY = 0,
 			dir = {dir: null, isTouch: false};
-		oNum = num || 30;
+		const oNum = num || 30;
 		element.addEventListener('touchstart', function (event) {
 			dir.isTouch = false;
             //event.preventDefault();
@@ -303,7 +303,6 @@
 	};
 
 
-
     /**
      * time:2015年12月10日14:31:15
      * version: 0.1.2
@@ -419,6 +418,6 @@
 		});
 	}
 
-
+	window['Ftool'] = Ftool ;
 })(window);
 
