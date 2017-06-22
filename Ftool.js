@@ -8,7 +8,7 @@
 
 	var ua = navigator.userAgent.toUpperCase();
 
-	let Ftool = {
+	let tool = {
         /**
          * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
          * @param value
@@ -45,22 +45,22 @@
          * @param message  提示字符
          */
 		alert:function (message) {
-			const dom = document.querySelector('#ftoolAlert');
+			const dom = document.querySelector('#toolAlert');
 			const debugDom = dom?dom:createAlertDom();
 
 			console.log(debugDom);
 			debugDom.style.display='block';
-			const messageDom = document.querySelector('#ftoolmessage');
+			const messageDom = document.querySelector('#toolmessage');
 			messageDom.innerHTML = typeof(message) == typeof({}) ? JSON.stringify(message):message ;
             //debugDom.appendChild(messageDom);
 
 			function createAlertDom() {
 				let dom =  document.createElement('div');
-				dom.id = 'ftoolAlert';
+				dom.id = 'toolAlert';
 				dom.style.cssText='display:none;background:rgba(0,0,0,.5);height:100%;width:100%;overflow:auto;position:fixed;left:0;top:0;z-index:99999';
 				dom.innerHTML = `
             <div style="width: 88%;margin: 45% auto 0;background:#eeeeee;border-radius: 10px;">
-                <h4 id="ftoolmessage" style="padding: 20px 3px;text-align: center;word-break:break-all;"></h4>
+                <h4 id="toolmessage" style="padding: 20px 3px;text-align: center;word-break:break-all;"></h4>
                 <p style="text-align: center;padding: 10px 0;border-top:1px solid #a7a7de;">好</p>
             </div>    
         `;
@@ -152,13 +152,13 @@
 	};
 
 
-	Ftool.IS_ANDROID = ua.indexOf('ANDROID') != -1;
+	tool.IS_ANDROID = ua.indexOf('ANDROID') != -1;
 
-	Ftool.IS_IOS = ua.indexOf('IPHONE OS') != -1;
+	tool.IS_IOS = ua.indexOf('IPHONE OS') != -1;
 
-	Ftool.IS_WECHAT = ua.indexOf('MICROMESSENGER') != -1;
+	tool.IS_WECHAT = ua.indexOf('MICROMESSENGER') != -1;
 
-	Ftool.IS_PC = function () {
+	tool.IS_PC = function () {
 		var userAgentInfo = navigator.userAgent;
 		var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
 		var flag = true;
@@ -171,7 +171,7 @@
 		return flag;
 	}();
 
-    // Ftool.IS_TXT = ua.indexOf('PATXT') != -1;
+    // tool.IS_TXT = ua.indexOf('PATXT') != -1;
 
     /**
      * 获取滑动的方向
@@ -179,7 +179,7 @@
      * @param num   滑动的灵敏度 数字越低 灵敏度越高
      * @returns {dir: null, isTouch: boolean}
      */
-	Ftool.touchDirection = function (element, num) {
+	tool.touchDirection = function (element, num) {
 		var startX = 0,
 			startY = 0,
 			endX = 0,
@@ -236,7 +236,7 @@
      * @param url string
      * @param fn callback
      */
-	Ftool.getJSON = function (url, fn) {
+	tool.getJSON = function (url, fn) {
 
 		var request = new XMLHttpRequest();
 		request.open('GET', url, true);
@@ -262,7 +262,7 @@
      * @param fmt   格式化  格式
      * @returns {string}  格式化后的时间
      */
-	Ftool.formatDate = function (date, fmt = 'YYYY-MM-DD HH:mm:ss') {
+	tool.formatDate = function (date, fmt = 'YYYY-MM-DD HH:mm:ss') {
 		if (typeof date === 'string') {
 			date = new Date(date.replace(/-/g, '/'));
 		}
@@ -418,6 +418,6 @@
 		});
 	}
 
-	window['Ftool'] = Ftool ;
+	window['Ftool'] = tool ;
 })(window);
 
