@@ -23,5 +23,9 @@ module.exports = {
             "always"
         ],
         "no-console":0
-    }
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
 };
