@@ -40,6 +40,23 @@
 				}
 			}
 		},
+		/**
+         * 获取字符串长度 汉字算两个
+         * @param {string} val
+         * @returns {number}
+         */
+        getByteLen(val) {
+            let len = 0;
+            for (let i = 0; i < val.length; i++) {
+                const length = val.charCodeAt(i);
+                if(length>=0&&length<=128) {
+                    len += 1;
+                } else {
+                    len += 2;
+                }
+            }
+            return len;
+        },
         /**
 		 *
          * @param message  提示字符
