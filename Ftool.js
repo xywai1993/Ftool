@@ -8,6 +8,11 @@
 var ua = navigator.userAgent.toUpperCase();
 
 let tool = {
+	IS_ANDROID : ua.indexOf('ANDROID') !== -1,
+
+	IS_IOS : ua.indexOf('IPHONE OS') !== -1,
+
+	IS_WECHAT : ua.indexOf('MICROMESSENGER') !== -1,
     /**
      * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
      * @param value
@@ -22,7 +27,7 @@ let tool = {
      */
 	upset: function (arr) {
 		return arr.sort(function () {
-			Math.random() - 0.5;
+			return Math.random() - 0.5;
 		});
 	},
     /**
@@ -67,7 +72,7 @@ let tool = {
 		console.log(debugDom);
 		debugDom.style.display='block';
 		const messageDom = document.querySelector('#toolmessage');
-		messageDom.innerHTML = typeof(message) == typeof({}) ? JSON.stringify(message):message ;
+		messageDom.innerHTML = typeof(message) === typeof({}) ? JSON.stringify(message):message ;
         //debugDom.appendChild(messageDom);
 
 		function createAlertDom() {
@@ -82,7 +87,7 @@ let tool = {
         `;
 			document.querySelector('body').appendChild(dom);
 			dom.addEventListener('click',function (ev) {
-				if(ev.target.nodeName.toUpperCase() == 'P'){
+				if(ev.target.nodeName.toUpperCase() === 'P'){
 					dom.style.display = 'none';
 				}
 			},false);
@@ -102,7 +107,7 @@ let tool = {
      */
 	debuglog:function(message){
 		const arr = ['m.caibeitv.com','v.caibeitv.com','e.caibeitv.com'];
-		if(arr.indexOf(location.host) != -1){
+		if(arr.indexOf(location.host) !== -1){
 			return ;
 		}
 		const dom = document.querySelector('#debugDom');
@@ -110,7 +115,7 @@ let tool = {
 
 
 		const messageDom = document.createElement('div');
-		messageDom.innerHTML = typeof(message) == typeof({}) ? JSON.stringify(message):message ;
+		messageDom.innerHTML = typeof(message) === typeof({}) ? JSON.stringify(message):message ;
 		debugDom.appendChild(messageDom);
 
 
@@ -168,17 +173,13 @@ let tool = {
 };
 
 
-tool.IS_ANDROID = ua.indexOf('ANDROID') != -1;
 
-tool.IS_IOS = ua.indexOf('IPHONE OS') != -1;
-
-tool.IS_WECHAT = ua.indexOf('MICROMESSENGER') != -1;
 
 tool.IS_PC = function () {
-	var userAgentInfo = navigator.userAgent;
-	var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
-	var flag = true;
-	for (var v = 0; v < Agents.length; v++) {
+	let userAgentInfo = navigator.userAgent;
+	let Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
+	let flag = true;
+	for (let v = 0; v < Agents.length; v++) {
 		if (userAgentInfo.indexOf(Agents[v]) > 0) {
 			flag = false;
 			break;
@@ -193,7 +194,7 @@ tool.IS_PC = function () {
  * 获取滑动的方向
  * @param element  在哪个元素上
  * @param num   滑动的灵敏度 数字越低 灵敏度越高
- * @returns {dir: null, isTouch: boolean}
+ * @returns {object} {dir: null, isTouch: boolean}
  */
 tool.touchDirection = function (element, num) {
 	var startX = 0,
@@ -254,13 +255,13 @@ tool.touchDirection = function (element, num) {
  */
 tool.getJSON = function (url, fn) {
 
-	var request = new XMLHttpRequest();
+	const request = new XMLHttpRequest();
 	request.open('GET', url, true);
 
 	request.onreadystatechange = function () {
-		if (request.readyState == 4 && request.status == 200) {
+		if (parseInt(request.readyState) === 4 && parseInt(request.status) === 200) {
             // Success!
-			var data = JSON.parse(request.responseText);
+			let data = JSON.parse(request.responseText);
 			fn(data);
 		} else {
             // We reached our target server, but it returned an error
@@ -336,7 +337,7 @@ tool.formatDate = function (date, fmt = 'YYYY-MM-DD HH:mm:ss') {
      *  onClose:function(){}
      * }
  *
- * @param option
+ * @param {object} parse
  * @constructor
  * .js-shadow{ position:absolute;left:0;top:0;width:100%; background:rgba(0,0,0,.4); z-index: 100;}
  */
@@ -354,7 +355,7 @@ function Shadow(parse) {
 		}
 	};
 
-	for (var i in parse) {
+	for (let i in parse) {
 		self.option[i] = parse[i];
 	}
 
@@ -385,7 +386,7 @@ function Shadow(parse) {
 }
 
 Shadow.prototype.open = function (callback) {
-	var self = this;
+	const self = this;
 	document.body.appendChild(self.shadow);
 	self.in = true;
 	if (callback) {
@@ -395,7 +396,7 @@ Shadow.prototype.open = function (callback) {
 	}
 };
 Shadow.prototype.close = function (callback) {
-	var self = this;
+	const self = this;
 	if (self.in) {
 		document.body.removeChild(self.shadow);
 		self.in = false;
@@ -417,19 +418,19 @@ Shadow.prototype.close = function (callback) {
  */
 function MaxLength(input, target, max) {
 
-	var input = this.input = document.getElementById(input),
-		target = this.target = document.getElementById(target),
-		max = this.max = max;
+	let inputDom = this.input = document.getElementById(input),
+		targetDom = this.target = document.getElementById(target),
+		maxNum = this.max = max;
 
-	input.addEventListener('focus', function () {
-		var self = this;
+	inputDom.addEventListener('focus', function () {
+		const self = this;
 		document.addEventListener('keyup', function () {
 
 			if (self.value.length > max) {
-				self.value = self.value.substr(0, max);
+				self.value = self.value.substr(0, maxNum);
 				return;
 			}
-			target.innerText = '' + self.value.length + '/' + max;
+			targetDom.innerText = '' + self.value.length + '/' + max;
 		});
 	});
 }
