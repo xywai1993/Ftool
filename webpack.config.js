@@ -5,7 +5,9 @@ module.exports = {
 	entry: './Ftool.js',
 	output: {
 		filename: 'Ftool.min.js',
-		path: path.resolve(__dirname, 'dist')
+		path: path.resolve(__dirname, './dist'),
+		libraryTarget: 'umd',
+		umdNamedDefine: true
 	},
 	
 	plugins:[
