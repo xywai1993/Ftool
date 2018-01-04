@@ -7,9 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack"
   },
-  "dependencies": {
-    "eslint": "^4.5.0"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/xywai1993/Ftool.git"
@@ -25,6 +23,7 @@
     "babel-loader": "^7.1.0",
     "babel-preset-env": "^1.6.0",
     "eslint-loader": "^1.9.0",
-    "webpack": "^3.5.5"
+    "webpack": "^3.5.5",
+    "eslint": "^4.5.0"
   }
 }
