@@ -220,10 +220,10 @@ tool.touchDirection = function (element, num) {
 		// console.log(startX,startY)
 	}, false);
 
-	element.addEventListener('touchend', function (event) {
+	element.addEventListener('touchend', function () {
 
 		//event.preventDefault();
-		var touchX = endX - startX,
+		const touchX = endX - startX,
 			touchY = endY - startY;
 
 		if (Math.abs(touchX) > Math.abs(touchY)) {
@@ -409,31 +409,6 @@ Shadow.prototype.close = function (callback) {
 
 };
 
-/**
- * 显示当前字符数 以及控制最大输入字符
- * @param input  输入框  id
- * @param target  显示当前字符数的容器  id
- * @param max   最大字符数 number
- * @constructor
- */
-function MaxLength(input, target, max) {
-
-	let inputDom = this.input = document.getElementById(input),
-		targetDom = this.target = document.getElementById(target),
-		maxNum = this.max = max;
-
-	inputDom.addEventListener('focus', function () {
-		const self = this;
-		document.addEventListener('keyup', function () {
-
-			if (self.value.length > max) {
-				self.value = self.value.substr(0, maxNum);
-				return;
-			}
-			targetDom.innerText = '' + self.value.length + '/' + max;
-		});
-	});
-}
 //
 // window['Ftool'] = tool ;
 // module.exports = tool ;
