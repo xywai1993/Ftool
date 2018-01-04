@@ -8,12 +8,12 @@
 var ua = navigator.userAgent.toUpperCase();
 
 let tool = {
-	IS_ANDROID : ua.indexOf('ANDROID') !== -1,
+	IS_ANDROID: ua.indexOf('ANDROID') !== -1,
 
-	IS_IOS : ua.indexOf('IPHONE OS') !== -1,
+	IS_IOS: ua.indexOf('IPHONE OS') !== -1,
 
-	IS_WECHAT : ua.indexOf('MICROMESSENGER') !== -1,
-    /**
+	IS_WECHAT: ua.indexOf('MICROMESSENGER') !== -1,
+	/**
      * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
      * @param value
      * @returns {boolean}
@@ -21,7 +21,7 @@ let tool = {
 	isArray: function (value) {
 		return Object.prototype.toString.call(value) == '[object Array]';
 	},
-    /**
+	/**
      * 打乱数组元素
      *
      */
@@ -30,7 +30,7 @@ let tool = {
 			return Math.random() - 0.5;
 		});
 	},
-    /**
+	/**
      * 获取URL的参数
      * @returns {}
      */
@@ -44,7 +44,7 @@ let tool = {
 			}
 		}
 	},
-    /**
+	/**
      * 获取字符串长度 汉字算两个
      * @param {string} val
      * @returns {number}
@@ -53,7 +53,7 @@ let tool = {
 		let len = 0;
 		for (let i = 0; i < val.length; i++) {
 			const length = val.charCodeAt(i);
-			if(length>=0&&length<=128) {
+			if (length >= 0 && length <= 128) {
 				len += 1;
 			} else {
 				len += 2;
@@ -61,24 +61,24 @@ let tool = {
 		}
 		return len;
 	},
-    /**
+	/**
      *
      * @param message  提示字符
      */
-	alert:function (message) {
+	alert: function (message) {
 		const dom = document.querySelector('#toolAlert');
-		const debugDom = dom?dom:createAlertDom();
+		const debugDom = dom ? dom : createAlertDom();
 
 		console.log(debugDom);
-		debugDom.style.display='block';
+		debugDom.style.display = 'block';
 		const messageDom = document.querySelector('#toolmessage');
-		messageDom.innerHTML = typeof(message) === typeof({}) ? JSON.stringify(message):message ;
-        //debugDom.appendChild(messageDom);
+		messageDom.innerHTML = typeof (message) === typeof ({}) ? JSON.stringify(message) : message;
+		//debugDom.appendChild(messageDom);
 
 		function createAlertDom() {
-			let dom =  document.createElement('div');
+			let dom = document.createElement('div');
 			dom.id = 'toolAlert';
-			dom.style.cssText='display:none;background:rgba(0,0,0,.5);height:100%;width:100%;overflow:auto;position:fixed;left:0;top:0;z-index:99999';
+			dom.style.cssText = 'display:none;background:rgba(0,0,0,.5);height:100%;width:100%;overflow:auto;position:fixed;left:0;top:0;z-index:99999';
 			dom.innerHTML = `
             <div style="width: 88%;margin: 45% auto 0;background:#eeeeee;border-radius: 10px;">
                 <h4 id="toolmessage" style="padding: 20px 3px;text-align: center;word-break:break-all;"></h4>
@@ -86,61 +86,61 @@ let tool = {
             </div>    
         `;
 			document.querySelector('body').appendChild(dom);
-			dom.addEventListener('click',function (ev) {
-				if(ev.target.nodeName.toUpperCase() === 'P'){
+			dom.addEventListener('click', function (ev) {
+				if (ev.target.nodeName.toUpperCase() === 'P') {
 					dom.style.display = 'none';
 				}
-			},false);
-			dom.addEventListener('touchmove',function (ev) {
+			}, false);
+			dom.addEventListener('touchmove', function (ev) {
 				ev.preventDefault();
 				ev.stopPropagation();
 				return false;
-			},false);
-            //dom.innerHTML = message;
-			return dom ;
+			}, false);
+			//dom.innerHTML = message;
+			return dom;
 		}
 
 	},
-    /**
+	/**
      * 在页面中开一个控制台，打印调试信息
      * @param message  打印字符
      */
-	debuglog:function(message){
-		const arr = ['m.caibeitv.com','v.caibeitv.com','e.caibeitv.com'];
-		if(arr.indexOf(location.host) !== -1){
-			return ;
+	debuglog: function (message) {
+		const arr = ['m.caibeitv.com', 'v.caibeitv.com', 'e.caibeitv.com'];
+		if (arr.indexOf(location.host) !== -1) {
+			return;
 		}
 		const dom = document.querySelector('#debugDom');
-		const debugDom = dom?dom:creatDom();
+		const debugDom = dom ? dom : creatDom();
 
 
 		const messageDom = document.createElement('div');
-		messageDom.innerHTML = typeof(message) === typeof({}) ? JSON.stringify(message):message ;
+		messageDom.innerHTML = typeof (message) === typeof ({}) ? JSON.stringify(message) : message;
 		debugDom.appendChild(messageDom);
 
 
 		function creatDom() {
-			let dom =  document.createElement('div');
+			let dom = document.createElement('div');
 			dom.id = 'debugDom';
-			dom.style.cssText='background:#000;color:#ffffff;width:100%;height:300px;overflow:auto;word-break:break-all;';
+			dom.style.cssText = 'background:#000;color:#ffffff;width:100%;height:300px;overflow:auto;word-break:break-all;';
 			document.querySelector('body').appendChild(dom);
-            //dom.innerHTML = message;
-			return dom ;
+			//dom.innerHTML = message;
+			return dom;
 		}
 	},
-    /**
+	/**
      *
      * @param func 要执行的方法
      * @param wait  间隔时间
      * @param immediate  布尔值    true 间隔前执行   false 间隔后执行
      * @returns {Function}  返回要执行的方法
      */
-	debounce:function(func, wait, immediate) {
+	debounce: function (func, wait, immediate) {
 
 		var timeout, args, context, timestamp, result;
 
-		var later = function() {
-			console.log(1111,new Date().getTime(),timestamp);
+		var later = function () {
+			console.log(1111, new Date().getTime(), timestamp);
 			var last = new Date().getTime() - timestamp;
 
 			if (last < wait && last >= 0) {
@@ -154,7 +154,7 @@ let tool = {
 			}
 		};
 
-		return function() {
+		return function () {
 			context = this;
 			args = arguments;
 			timestamp = new Date().getTime();
@@ -201,11 +201,11 @@ tool.touchDirection = function (element, num) {
 		startY = 0,
 		endX = 0,
 		endY = 0,
-		dir = {dir: null, isTouch: false};
+		dir = { dir: null, isTouch: false };
 	const oNum = num || 30;
 	element.addEventListener('touchstart', function (event) {
 		dir.isTouch = false;
-        //event.preventDefault();
+		//event.preventDefault();
 		var touch = event.targetTouches[0];
 		startX = touch.pageX;
 		startY = touch.pageY;
@@ -213,34 +213,34 @@ tool.touchDirection = function (element, num) {
 
 	element.addEventListener('touchmove', function (event) {
 		dir.isTouch = true;
-        //event.preventDefault();
+		//event.preventDefault();
 		var touch = event.targetTouches[0];
 		endX = touch.pageX;
 		endY = touch.pageY;
-        // console.log(startX,startY)
+		// console.log(startX,startY)
 	}, false);
 
 	element.addEventListener('touchend', function (event) {
 
-        //event.preventDefault();
+		//event.preventDefault();
 		var touchX = endX - startX,
 			touchY = endY - startY;
 
 		if (Math.abs(touchX) > Math.abs(touchY)) {
 			if (touchX < -oNum) {
-                // console.log('向左')
+				// console.log('向左')
 				dir.dir = 'left';
 			} else if (touchX > oNum) {
-                // console.log('向右')
+				// console.log('向右')
 				dir.dir = 'right';
 			}
 		} else {
 			if (touchY < -oNum) {
-                // console.log('向上');
+				// console.log('向上');
 				dir.dir = 'top';
 			}
 			if (touchY > oNum) {
-                // console.log('向下') ;
+				// console.log('向下') ;
 				dir.dir = 'bottom';
 			}
 		}
@@ -260,16 +260,16 @@ tool.getJSON = function (url, fn) {
 
 	request.onreadystatechange = function () {
 		if (parseInt(request.readyState) === 4 && parseInt(request.status) === 200) {
-            // Success!
+			// Success!
 			let data = JSON.parse(request.responseText);
 			fn(data);
 		} else {
-            // We reached our target server, but it returned an error
+			// We reached our target server, but it returned an error
 		}
 	};
-    //request.onerror = function() {
-    //    // There was a connection error of some sort
-    //};
+	//request.onerror = function() {
+	//    // There was a connection error of some sort
+	//};
 
 	request.send();
 };
@@ -361,22 +361,22 @@ function Shadow(parse) {
 
 	self.shadow = document.createElement('div');
 	self.in = false;
-    //设置id 供外部使用
+	//设置id 供外部使用
 	self.shadow.id = self.option.id;
 
-    // 设置 样式
-    //self.shadow.className = 'js-shadow' ;
+	// 设置 样式
+	//self.shadow.className = 'js-shadow' ;
 	self.shadow.style.cssText = 'position:absolute;left:0;top:0;width:100%; background:rgba(0,0,0,.4); z-index: 100;' + self.option.csstext;
 	self.shadow.style.height = document.body.scrollHeight + 'px';
 
-    // 设置是否 点击关闭
+	// 设置是否 点击关闭
 	if (self.option.click) {
 		self.shadow.onclick = function () {
 			document.body.removeChild(self.shadow);
 			self.in = false;
 		};
 	}
-    //监听onclick 事件
+	//监听onclick 事件
 	self.shadow.addEventListener('click', function () {
 		if (self.option.click) {
 			self.option.onClose();
@@ -437,5 +437,5 @@ function MaxLength(input, target, max) {
 //
 // window['Ftool'] = tool ;
 // module.exports = tool ;
-export default tool ;
-export {tool as Ftool};
+export default tool;
+export { tool as Ftool };
