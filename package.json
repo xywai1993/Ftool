@@ -1,29 +1,30 @@
 {
-  "name": "ftool",
-  "version": "1.0.0",
-  "description": "常用工具函数",
-  "main": "Ftool.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
-  },
-  "dependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xywai1993/Ftool.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/xywai1993/Ftool/issues"
-  },
-  "homepage": "https://github.com/xywai1993/Ftool#readme",
-  "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.1.0",
-    "babel-preset-env": "^1.6.0",
-    "eslint-loader": "^1.9.0",
-    "webpack": "^3.5.5",
-    "eslint": "^4.5.0"
-  }
+    "name": "ftool",
+    "version": "1.0.0",
+    "description": "常用工具函数",
+    "main": "Ftool.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "webpack"
+    },
+    "dependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xywai1993/Ftool.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/xywai1993/Ftool/issues"
+    },
+    "homepage": "https://github.com/xywai1993/Ftool#readme",
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.0",
+        "babel-preset-env": "^1.7.0",
+        "eslint": "^4.5.0",
+        "eslint-loader": "^1.9.0",
+        "randomatic": ">=3.0.0",
+        "webpack": "^3.5.5"
+    }
 }
