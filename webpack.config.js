@@ -1,30 +1,34 @@
 var path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
-	entry: './Ftool.js',
+	mode: 'production',
+	entry: './src/Ftool.ts',
 	output: {
 		filename: 'Ftool.min.js',
 		path: path.resolve(__dirname, './dist'),
 		libraryTarget: 'umd',
 		umdNamedDefine: true
 	},
-	
-	plugins:[
-		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: true
-		})
-	],
+
+	optimization: {
+		minimize: true
+	},
 	module: {
 		rules: [
+			{
+				test: /\.ts$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'ts-loader'
+				}
+			},
 			{
 				test: /\.js$/,
 				exclude: /(node_modules|bower_components)/,
 				use: {
-					loader:  'babel-loader'
+					loader: 'babel-loader'
 				}
 			}
 		]
 	}
-    
 };

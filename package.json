@@ -5,9 +5,12 @@
     "main": "Ftool.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "build": "webpack"
+        "build": "webpack",
+        "tsbuild": "tsc "
     },
-    "dependencies": {},
+    "dependencies": {
+        "ts-loader": "^5.3.3"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/xywai1993/Ftool.git"
@@ -25,6 +28,8 @@
         "eslint": "^4.5.0",
         "eslint-loader": "^1.9.0",
         "randomatic": ">=3.0.0",
-        "webpack": "^3.5.5"
+        "typescript": "^3.2.4",
+        "webpack": "^4.29.0",
+        "webpack-cli": "^3.2.1"
     }
 }
