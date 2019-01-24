@@ -1,4 +1,4 @@
-export interface dir {
+interface dir {
 	dir: string;
 	isTouch: boolean;
 }

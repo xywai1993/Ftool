@@ -1,8 +1,3 @@
-interface dir {
-	dir: string;
-	isTouch: boolean;
-}
-
 /**
  * author yiper.fan
  */
@@ -267,8 +262,8 @@ tool.touchDirection = function(element: Element, num: number) {
 
 /**
  * 简单的ajax  get 请求
- * @param url string
- * @param fn callback
+ * @param {string} url string
+ * @param {Function} fn callback
  */
 tool.getJSON = function(url: string, fn: Function) {
 	const request = new XMLHttpRequest();
