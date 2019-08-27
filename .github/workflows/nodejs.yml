@@ -7,6 +7,6 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - name: first setps
-              uses: actions/npm@master
-            - run: npm run test
+            - run: |
+                  npm install
+                  npm run test
