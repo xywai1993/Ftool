@@ -290,6 +290,12 @@ tool.getJSON = function(url: string, fn: Function) {
  * @param fmt   格式化  格式
  * @returns {string}  格式化后的时间
  */
+interface oo {
+	[index: string]: number;
+}
+interface weekweek {
+	[index: string]: string;
+}
 tool.formatDate = function(date: any, fmt = 'YYYY-MM-DD HH:mm:ss') {
 	if (typeof date === 'string') {
 		date = new Date(date.replace(/-/g, '/'));
@@ -297,9 +303,7 @@ tool.formatDate = function(date: any, fmt = 'YYYY-MM-DD HH:mm:ss') {
 	if (typeof date === 'number') {
 		date = new Date(date);
 	}
-	interface oo {
-		[index: string]: number;
-	}
+
 	var o: oo = {
 		'M+': date.getMonth() + 1,
 		'D+': date.getDate(),
@@ -310,9 +314,7 @@ tool.formatDate = function(date: any, fmt = 'YYYY-MM-DD HH:mm:ss') {
 		'q+': Math.floor((date.getMonth() + 3) / 3),
 		S: date.getMilliseconds()
 	};
-	interface weekweek {
-		[index: string]: string;
-	}
+
 	var week: weekweek = {
 		'0': '\u65e5',
 		'1': '\u4e00',

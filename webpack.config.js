@@ -6,8 +6,9 @@ module.exports = {
 	output: {
 		filename: 'Ftool.min.js',
 		path: path.resolve(__dirname, './dist'),
-		libraryTarget: 'umd'
-		//umdNamedDefine: true
+		libraryTarget: 'umd',
+		umdNamedDefine: true,
+		library: 'Ftool'
 	},
 
 	optimization: {
