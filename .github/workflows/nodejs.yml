@@ -7,4 +7,6 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - run: echo "hello world"
+            - name: first setps
+              uses = "actions/npm@master"
+            - run: npm run test
