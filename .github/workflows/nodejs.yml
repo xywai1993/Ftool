@@ -5,6 +5,9 @@ on: [push]
 jobs:
     build:
         runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node_version: [8, 10, 12]
 
         steps:
             - run: |
