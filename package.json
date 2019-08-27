@@ -4,7 +4,7 @@
     "description": "常用工具函数",
     "main": "./src/Ftool.ts",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "echo \"Error: no test specified\"",
         "build": "webpack",
         "tsbuild": "tsc "
     },
