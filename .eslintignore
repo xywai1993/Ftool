@@ -1,2 +1,3 @@
 node_modules/*
 fis-conf.js
+webpack.config.js

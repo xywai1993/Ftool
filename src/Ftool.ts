@@ -296,7 +296,7 @@ interface oo {
 interface weekweek {
 	[index: string]: string;
 }
-tool.formatDate = function(date: any, fmt = 'YYYY-MM-DD HH:mm:ss') {
+tool.formatDate = function(date: any, fmt:string = 'YYYY-MM-DD HH:mm:ss') {
 	if (typeof date === 'string') {
 		date = new Date(date.replace(/-/g, '/'));
 	}
