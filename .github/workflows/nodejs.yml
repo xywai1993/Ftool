@@ -1,6 +1,9 @@
 name: Node CI
 
-on: [push]
+on:
+    push:
+        branches:
+            - 'bate1.0' # Push events to branches matching refs/heads/releases/*
 
 jobs:
     test:
@@ -14,7 +17,7 @@ jobs:
         steps:
             - uses: actions/checkout@v1
 
-            - name: npm install, build and test
+            - name: npm install and test
               run: |
                   npm install
                   npm run jest
