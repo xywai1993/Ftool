@@ -21,3 +21,5 @@ jobs:
               run: |
                   npm install
                   npm run jest
+                  git checkout master
+                  git merge bate1.0
