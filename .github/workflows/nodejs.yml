@@ -21,7 +21,7 @@ jobs:
               run: |
                   npm install
                   npm run jest
-                  git checkout master
+                  git checkout origin/master
                   git merge origin/bate1.0
                   git commit -am 'merge origin/bate1.0'
                   git push
