@@ -18,7 +18,8 @@ jobs:
               run: npm install
 
     update:
-        need: test
+        needs: test
+        runs-on: macos-latest
         steps:
             - run: npm version patch
             - run: npm publish --access public
