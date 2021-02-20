@@ -17,9 +17,8 @@ jobs:
             - name: npm install and add version
               run: npm install
 
-            
     update:
-        need:test
+        need: test
         steps:
             - run: npm version patch
             - run: npm publish --access public
@@ -28,4 +27,3 @@ jobs:
             - run: git add .
             - run: git commit -am '发布'
             - run: git push
-            
