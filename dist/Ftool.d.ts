@@ -31,7 +31,7 @@ export declare const getByteLen: (val: string) => number;
  *
  * 简易提示框
  */
-export declare const Falert: (message: string | object) => void;
+export declare const Falert: (message: object | string) => void;
 /**
  *
  * @param func 要执行的方法
@@ -40,13 +40,6 @@ export declare const Falert: (message: string | object) => void;
  * @returns {Function}  返回要执行的方法
  */
 export declare const debounce: (func: Function, wait: number, immediate: boolean) => (this: any) => Function;
-/**
- * 获取滑动的方向
- * @param element  在哪个元素上
- * @param num   滑动的灵敏度 数字越低 灵敏度越高
- * @returns {object} {dir: null, isTouch: boolean}
- */
-export declare const touchDirection: (element: Element, num: number) => dir;
 /**
  * 简单的ajax  get 请求
  * @param {string} url string
@@ -61,8 +54,3 @@ export declare const formatDate: (date: any, fmt?: string) => string;
  * @param fn
  */
 export declare const postJSON: (url: string, data: object, fn: Function) => void;
-/**
- * 提交error日志到服务器
- * 待优化
- */
-export declare const postErrorLog: () => void;

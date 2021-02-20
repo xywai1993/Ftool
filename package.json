@@ -4,10 +4,8 @@
     "description": "常用工具函数",
     "main": "dist/Ftool.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\"",
-        "build": "webpack",
-        "tsbuild": "tsc ",
-        "jest": "jest"
+        "test": "jest",
+        "tsbuild": "tsc  "
     },
     "dependencies": {},
     "repository": {
@@ -21,23 +19,12 @@
     },
     "homepage": "https://github.com/xywai1993/Ftool#readme",
     "devDependencies": {
-        "@babel/preset-env": "^7.5.5",
-        "@babel/preset-typescript": "^7.3.3",
         "@types/jest": "^24.0.18",
         "jest": "^24.9.0",
-        "ts-loader": "^6.0.4",
-        "babel-core": "^6.26.3",
-        "babel-loader": "^8.0.6",
-        "babel-preset-env": "^1.7.0",
-        "eslint": "^6.2.2",
-        "eslint-loader": "^3.0.0",
-        "randomatic": ">=3.0.0",
-        "typescript": "^3.5.3",
-        "webpack": "^4.39.3",
-        "webpack-cli": "^3.3.7"
+        "typescript": "^4.1.5"
     },
     "eslintIgnore": [
-        "./dist/Ftool.min.js"
+        "./dist/**"
     ],
     "files": [
         "dist"

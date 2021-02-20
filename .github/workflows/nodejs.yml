@@ -1,9 +1,6 @@
 name: Node CI
 
-on:
-    push:
-        branches:
-            - 'bate1.0' # Push events to branches matching refs/heads/releases/*
+on: push
 
 jobs:
     test:
