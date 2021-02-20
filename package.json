@@ -2,7 +2,7 @@
     "name": "@yiper.fan/ftool",
     "version": "1.0.3",
     "description": "常用工具函数",
-    "main": "./dist/Ftool.js",
+    "main": "dist/Ftool.js",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
         "build": "webpack",
@@ -38,5 +38,8 @@
     },
     "eslintIgnore": [
         "./dist/Ftool.min.js"
+    ],
+    "files": [
+        "dist"
     ]
 }
