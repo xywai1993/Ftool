@@ -3,24 +3,27 @@ name: Node CI
 on: push
 
 jobs:
-    test:
-        name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                node_version: [8, 10, 12]
-                os: [ubuntu-latest, windows-latest, macos-latest]
+    # test:
+    #     name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    #     runs-on: ${{ matrix.os }}
+    #     strategy:
+    #         matrix:
+    #             node_version: [8, 10, 12]
+    #             os: [ubuntu-latest, windows-latest, macos-latest]
 
-        steps:
-            - uses: actions/checkout@v1
+    #     steps:
+    #         - uses: actions/checkout@v1
 
-            - name: npm install and add version
-              run: npm install
+    #         - name: npm install and add version
+    #           run: npm install
 
     update:
         needs: test
         runs-on: macos-latest
         steps:
+            - uses: actions/checkout@v1
+            - name: npm install and add version
+              run: npm install
             - run: npm version patch
             - run: npm publish --access public
             - run: git config --global user.email 'yiper.fan@gmail.com'
