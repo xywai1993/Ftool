@@ -14,7 +14,18 @@ jobs:
         steps:
             - uses: actions/checkout@v1
 
-            - name: npm install and test
-              run: |
-                  npm install
-                  npm run jest
+            - name: npm install and add version
+              run: npm install
+
+            
+    update:
+        need:test
+        sets:
+            - run: npm version patch
+            - run: npm publish --access public
+            - run: git config --global user.email 'yiper.fan@gmail.com'
+            - run: git config --global user.name "yiper"
+            - run: git add .
+            - run: git commit -am '发布'
+            - run: git push
+            
