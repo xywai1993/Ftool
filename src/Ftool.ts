@@ -374,9 +374,9 @@ export const postJSON = function (url: string, data: object, fn: Function) {
  * 待优化
  * @param url 提交的日志地址  "//api.fanep.cn/api/error-log";
  */
-export const postErrorLog = (url: string) => {
+export const postErrorLog = (url: string = "//api.fanep.cn/api/error-log") => {
   const ua = window.navigator.userAgent;
-  
+
   const host = location.href;
   const postFn = (data: object) => {
     if (window.fetch) {

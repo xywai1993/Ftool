@@ -1,8 +1,8 @@
 {
-    "name": "ftool",
+    "name": "@xywai1993/ftool",
     "version": "1.0.0",
     "description": "常用工具函数",
-    "main": "./src/Ftool.ts",
+    "main": "./dist/Ftool.js",
     "scripts": {
         "test": "echo \"Error: no test specified\"",
         "build": "webpack",
@@ -18,7 +18,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/xywai1993/Ftool.git"
+        "url": "https://github.com/xywai1993/Ftool.git"
     },
     "author": "",
     "license": "ISC",
@@ -39,5 +39,8 @@
     },
     "eslintIgnore": [
         "./dist/Ftool.min.js"
-    ]
+    ],
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    }
 }
