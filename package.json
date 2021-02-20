@@ -1,5 +1,5 @@
 {
-    "name": "@xywai1993/ftool",
+    "name": "@yiper.fan/ftool",
     "version": "1.0.2",
     "description": "常用工具函数",
     "main": "./dist/Ftool.js",
@@ -9,16 +9,10 @@
         "tsbuild": "tsc ",
         "jest": "jest"
     },
-    "dependencies": {
-        "@babel/preset-env": "^7.5.5",
-        "@babel/preset-typescript": "^7.3.3",
-        "@types/jest": "^24.0.18",
-        "jest": "^24.9.0",
-        "ts-loader": "^6.0.4"
-    },
+    "dependencies": {},
     "repository": {
         "type": "git",
-        "url": "https://github.com/xywai1993/Ftool.git"
+        "url": "git+https://github.com/xywai1993/Ftool.git"
     },
     "author": "",
     "license": "ISC",
@@ -27,6 +21,11 @@
     },
     "homepage": "https://github.com/xywai1993/Ftool#readme",
     "devDependencies": {
+        "@babel/preset-env": "^7.5.5",
+        "@babel/preset-typescript": "^7.3.3",
+        "@types/jest": "^24.0.18",
+        "jest": "^24.9.0",
+        "ts-loader": "^6.0.4",
         "babel-core": "^6.26.3",
         "babel-loader": "^8.0.6",
         "babel-preset-env": "^1.7.0",
@@ -39,8 +38,5 @@
     },
     "eslintIgnore": [
         "./dist/Ftool.min.js"
-    ],
-    "publishConfig": {
-        "registry": "https://npm.pkg.github.com"
-    }
+    ]
 }
