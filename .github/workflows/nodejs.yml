@@ -32,5 +32,7 @@ jobs:
             - run: git add .
             - run: git commit -am 'github action 提交'
             - run: git push
+            - run: npm  config set registry "https://registry.npmjs.org/:_authToken = ${{ secrets.NPM_TOKEN }}"
+
             - run: npm version patch
             - run: npm publish --access public
