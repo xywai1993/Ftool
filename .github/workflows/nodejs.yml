@@ -27,10 +27,10 @@ jobs:
                   node-version: 15.8.0
             - name: npm install and add version
               run: npm install
-            - run: npm version patch
-            - run: npm publish --access public
             - run: git config --global user.email 'yiper.fan@gmail.com'
             - run: git config --global user.name "yiper"
             - run: git add .
-            - run: git commit -am '发布'
+            - run: git commit -am 'github action 提交'
             - run: git push
+            - run: npm version patch
+            - run: npm publish --access public
