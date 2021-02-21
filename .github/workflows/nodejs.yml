@@ -27,7 +27,8 @@ jobs:
                   node-version: 15.8.0
             - name: npm install and add version
               run: npm install
-            - run: npm  config set registry "https://registry.npmjs.org/:_authToken = ${{ secrets.NPM_TOKEN }}"
+            - run: curl -H 'Authorization: Bearer ${{ secrets.NPM_TOKEN }' \
+  https://registry.npmjs.org/  
             - run: npm version patch
             - run: npm publish --access public
             - run: git config --global user.email 'yiper.fan@gmail.com'
