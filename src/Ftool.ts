@@ -42,6 +42,8 @@ export const getRequestParams = function (key: string) {
             return ar[1];
         }
     }
+
+    return undefined;
 };
 
 /**
@@ -159,10 +161,9 @@ const debuglog = function (message: any) {
  * @returns {Function}  返回要执行的方法
  */
 export const debounce = function (func: Function, wait: number, immediate: boolean) {
-    var timeout: null | number, args: any, context: any, timestamp: number, result: Function;
+    var timeout: any, args: any, context: any, timestamp: number, result: Function;
 
     var later = function () {
-        console.log(1111, new Date().getTime(), timestamp);
         var last = new Date().getTime() - timestamp;
 
         if (last < wait && last >= 0) {
@@ -218,25 +219,21 @@ export const getJSON = function (url: string, fn: Function) {
 };
 /**
  *
- * @param date  日期时间戳
+ * @param d  日期时间戳或者日期字符串 2021-10-06
  * @param fmt   格式化  格式
  * @returns {string}  格式化后的时间
  */
-interface oo {
-    [index: string]: number;
-}
-interface weekweek {
-    [index: string]: string;
-}
-export const formatDate = function (date: any, fmt: string = 'YYYY-MM-DD HH:mm:ss') {
-    if (typeof date === 'string') {
-        date = new Date(date.replace(/-/g, '/'));
+
+export const formatDate = function (d: string | number, fmt: string = 'YYYY-MM-DD HH:mm:ss') {
+    let date = new Date();
+    if (typeof d === 'string') {
+        date = new Date(d.replace(/-/g, '/'));
     }
-    if (typeof date === 'number') {
+    if (typeof d === 'number') {
         date = new Date(date);
     }
 
-    var o: oo = {
+    var o: any = {
         'M+': date.getMonth() + 1,
         'D+': date.getDate(),
         'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12,
@@ -247,7 +244,7 @@ export const formatDate = function (date: any, fmt: string = 'YYYY-MM-DD HH:mm:s
         S: date.getMilliseconds(),
     };
 
-    var week: weekweek = {
+    var week: any = {
         '0': '\u65e5',
         '1': '\u4e00',
         '2': '\u4e8c',

@@ -46,7 +46,13 @@ export declare const debounce: (func: Function, wait: number, immediate: boolean
  * @param {Function} fn callback
  */
 export declare const getJSON: (url: string, fn: Function) => void;
-export declare const formatDate: (date: any, fmt?: string) => string;
+/**
+ *
+ * @param d  日期时间戳或者日期字符串 2021-10-06
+ * @param fmt   格式化  格式
+ * @returns {string}  格式化后的时间
+ */
+export declare const formatDate: (d: string | number, fmt?: string) => string;
 /**
  * 简单的post请求
  * @param url

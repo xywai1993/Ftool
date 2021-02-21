@@ -37,6 +37,7 @@ export const getRequestParams = function (key) {
             return ar[1];
         }
     }
+    return undefined;
 };
 /**
  * 获取字符串长度 汉字算两个
@@ -137,7 +138,6 @@ const debuglog = function (message) {
 export const debounce = function (func, wait, immediate) {
     var timeout, args, context, timestamp, result;
     var later = function () {
-        console.log(1111, new Date().getTime(), timestamp);
         var last = new Date().getTime() - timestamp;
         if (last < wait && last >= 0) {
             timeout = setTimeout(later, wait - last);
@@ -189,11 +189,18 @@ export const getJSON = function (url, fn) {
     //};
     request.send();
 };
-export const formatDate = function (date, fmt = 'YYYY-MM-DD HH:mm:ss') {
-    if (typeof date === 'string') {
-        date = new Date(date.replace(/-/g, '/'));
+/**
+ *
+ * @param d  日期时间戳或者日期字符串 2021-10-06
+ * @param fmt   格式化  格式
+ * @returns {string}  格式化后的时间
+ */
+export const formatDate = function (d, fmt = 'YYYY-MM-DD HH:mm:ss') {
+    let date = new Date();
+    if (typeof d === 'string') {
+        date = new Date(d.replace(/-/g, '/'));
     }
-    if (typeof date === 'number') {
+    if (typeof d === 'number') {
         date = new Date(date);
     }
     var o = {
