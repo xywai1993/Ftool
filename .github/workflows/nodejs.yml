@@ -20,6 +20,7 @@ jobs:
     update:
         # needs: test
         runs-on: macos-latest
+        node-version: 15.8.0
         steps:
             - uses: actions/checkout@v1
             - name: npm install and add version
