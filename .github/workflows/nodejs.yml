@@ -40,9 +40,6 @@ jobs:
             # - uses: JS-DevTools/npm-publish@v1
             #   with:
             #       token: ${{ secrets.NPM_TOKEN }}
-            - name: update version
-              run: |
-                  npm version patch
 
             - name: git commit
               run: |
@@ -53,5 +50,6 @@ jobs:
 
             - name: publish and push
               run: |
+                  npm version patch
                   npm publish
                   git push
