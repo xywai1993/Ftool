@@ -31,8 +31,8 @@ jobs:
               env:
                   TOKEN: ${{ secrets.NPM_TOKEN }}
               run: |
-                  echo '$TOKEN'    
-                  echo '//registry.npmjs.org/:_authToken=$TOKEN' >.npmrc
+                  echo '${{ secrets.NPM_TOKEN }}'    
+                  echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >.npmrc
 
             # - run: npm version patch
             # - uses: JS-DevTools/npm-publish@v1
