@@ -40,14 +40,18 @@ jobs:
             # - uses: JS-DevTools/npm-publish@v1
             #   with:
             #       token: ${{ secrets.NPM_TOKEN }}
-            - name: update version and publish
+            - name: update version
               run: |
                   npm version patch
-                  npm publish
-            - name: git push
+
+            - name: git commit
               run: |
                   git config --global user.email 'yiper.fan@gmail.com'
                   git config --global user.name "yiper"
                   git add .
                   git commit -am 'github action 提交..发布新版本'
+
+            - name: publish and push
+              run: |
+                  npm publish
                   git push
