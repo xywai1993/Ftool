@@ -2,7 +2,7 @@
  * author yiper.fan
  */
 const ua = navigator.userAgent.toUpperCase();
-const Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod'];
+const Agents = ['Android', 'iPhone', 'Windows Phone', 'iPad', 'iPod'];
 export const IS_ANDROID = ua.indexOf('ANDROID') !== -1;
 export const IS_IOS = ua.indexOf('IPHONE OS') !== -1;
 export const IS_WECHAT = ua.indexOf('MICROMESSENGER') !== -1;
