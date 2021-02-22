@@ -5,17 +5,7 @@ export declare const IS_ANDROID: boolean;
 export declare const IS_IOS: boolean;
 export declare const IS_WECHAT: boolean;
 export declare const IS_PC: boolean;
-/**
- * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
- * @param value
- * @returns {boolean}
- */
-export declare const isArray: (value: any) => boolean;
-/**
- * 打乱数组元素
- *
- */
-export declare const upset: (arr: any[]) => any[];
+/********* string方法 **********/
 /**
  * 获取URL的参数
  * @returns {string}
@@ -27,6 +17,34 @@ export declare const getRequestParams: (key: string) => string | undefined;
  * @returns {number}
  */
 export declare const getByteLen: (val: string) => number;
+/**
+ * 截取字符串 并添加...
+ * @param {string} str 内容
+ * @param {number} num 保留几个字符串，汉字算两个
+ * @param {boolean} showEllipsis - 是否显示省略号
+ */
+export declare const truncationFont: (str: string, num: number, showEllipsis?: boolean) => string;
+/**
+ * 给URL添加查询字符串
+ * @param {String} url
+ * @param {Object} obj
+ * @returns {string}
+ */
+export declare const setUrlQuery: (url: string, obj?: object) => string;
+/********* string方法 end! **********/
+/***** Array 相关 */
+/**
+ * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
+ * @param value
+ * @returns {boolean}
+ */
+export declare const isArray: (value: any) => boolean;
+/**
+ * 打乱数组元素
+ *
+ */
+export declare const upset: (arr: any[]) => any[];
+/******Array 相关 end */
 /**
  *
  * 简易提示框
@@ -60,3 +78,4 @@ export declare const postJSON: (url: string, data: object, fn: Function) => void
  * @param {Function} fn callback
  */
 export declare const getRemoteJSON: (url: string, fn: Function) => void;
+export declare const countDown: (times: number, callback: Function, endCallBack?: Function) => any;

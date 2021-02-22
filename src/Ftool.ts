@@ -76,7 +76,7 @@ export const truncationFont = function (str: string, num: number, showEllipsis: 
  * @param {Object} obj
  * @returns {string}
  */
-export const setUrlQuery = function (url: string, obj: object = {}): string {
+export const setUrlQuery = function (url: string, obj: { [index: string]: any } = {}): string {
     let p = [];
     for (let key in obj) {
         p.push(`${key}=${obj[key]}`);
@@ -343,7 +343,7 @@ export const getRemoteJSON = function (url: string, fn: Function) {
  * @param {Function} endCallBack
  */
 type time = string | number;
-export const countDown = (times: number, callback: Function, endCallBack: Function = () => {}): NodeJS.Timeout => {
+export const countDown = (times: number, callback: Function, endCallBack: Function = () => {}): any => {
     var timer: any = null;
 
     timer = setInterval(function () {
