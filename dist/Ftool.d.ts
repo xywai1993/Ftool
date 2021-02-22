@@ -41,12 +41,6 @@ export declare const Falert: (message: object | string) => void;
  */
 export declare const debounce: (func: Function, wait: number, immediate: boolean) => (this: any) => Function;
 /**
- * 简单的ajax  get 请求
- * @param {string} url string
- * @param {Function} fn callback
- */
-export declare const getJSON: (url: string, fn: Function) => void;
-/**
  *
  * @param d  日期时间戳或者日期字符串 2021-10-06
  * @param fmt   格式化  格式
@@ -60,3 +54,9 @@ export declare const formatDate: (d: string | number, fmt?: string) => string;
  * @param fn
  */
 export declare const postJSON: (url: string, data: object, fn: Function) => void;
+/**
+ * 获取JSON
+ * @param {string} url string
+ * @param {Function} fn callback
+ */
+export declare const getRemoteJSON: (url: string, fn: Function) => void;

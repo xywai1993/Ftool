@@ -194,30 +194,6 @@ export const debounce = function (func: Function, wait: number, immediate: boole
 };
 
 /**
- * 简单的ajax  get 请求
- * @param {string} url string
- * @param {Function} fn callback
- */
-export const getJSON = function (url: string, fn: Function) {
-    const request = new XMLHttpRequest();
-    request.open('GET', url, true);
-
-    request.onreadystatechange = function () {
-        if (request.readyState === 4 && request.status === 200) {
-            // Success!
-            let data = JSON.parse(request.responseText);
-            fn(data);
-        } else {
-            // We reached our target server, but it returned an error
-        }
-    };
-    //request.onerror = function() {
-    //    // There was a connection error of some sort
-    //};
-
-    request.send();
-};
-/**
  *
  * @param d  日期时间戳或者日期字符串 2021-10-06
  * @param fmt   格式化  格式
@@ -288,7 +264,29 @@ export const postJSON = function (url: string, data: object, fn: Function) {
     request.open('POST', url);
     request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify(data));
+};
+
+/**
+ * 获取JSON
+ * @param {string} url string
+ * @param {Function} fn callback
+ */
+export const getRemoteJSON = function (url: string, fn: Function) {
+    const request = new XMLHttpRequest();
+    request.open('GET', url, true);
+
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            // Success!
+            let data = JSON.parse(request.responseText);
+            fn(data);
+        } else {
+            // We reached our target server, but it returned an error
+        }
+    };
     //request.onerror = function() {
     //    // There was a connection error of some sort
     //};
+
+    request.send();
 };
