@@ -27,13 +27,16 @@ jobs:
                   node-version: 15.8.0
             - name: npm install and add version
               run: npm install
-            # - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >.npmrc
-            - run: npm version patch
-            - uses: JS-DevTools/npm-publish@v1
-              with:
-                  token: ${{ secrets.NPM_TOKEN }}
-            - run: git config --global user.email 'yiper.fan@gmail.com'
-            - run: git config --global user.name "yiper"
-            - run: git add .
-            - run: git commit -am 'github action 提交'
-            - run: git push
+            - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >.npmrc
+            # - run: npm version patch
+            # - uses: JS-DevTools/npm-publish@v1
+            #   with:
+            #       token: ${{ secrets.NPM_TOKEN }}
+            # - run: git config --global user.email 'yiper.fan@gmail.com'
+            # - run: git config --global user.name "yiper"
+            # - run: git add .
+            # - run: git commit -am 'github action 提交'
+            # - run: git push
+            - run: npm token
+            - run: npm whoami
+            - run: npm view
