@@ -30,7 +30,9 @@ export declare const truncationFont: (str: string, num: number, showEllipsis?: b
  * @param {Object} obj
  * @returns {string}
  */
-export declare const setUrlQuery: (url: string, obj?: object) => string;
+export declare const setUrlQuery: (url: string, obj?: {
+    [index: string]: any;
+}) => string;
 /********* string方法 end! **********/
 /***** Array 相关 */
 /**
