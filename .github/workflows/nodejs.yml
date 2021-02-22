@@ -27,7 +27,11 @@ jobs:
                   node-version: 15.8.0
             - name: npm install and add version
               run: npm install
-            - run: echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >.npmrc
+            - name: write npmrc
+              env:
+                  TOKEN: ${{ secrets.NPM_TOKEN }}
+              run: echo '$TOKEN'    
+              run: echo '//registry.npmjs.org/:_authToken=$TOKEN' >.npmrc
             # - run: npm version patch
             # - uses: JS-DevTools/npm-publish@v1
             #   with:
