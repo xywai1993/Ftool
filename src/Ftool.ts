@@ -10,24 +10,7 @@ export const IS_IOS = ua.indexOf('IPHONE OS') !== -1;
 export const IS_WECHAT = ua.indexOf('MICROMESSENGER') !== -1;
 export const IS_PC = !Agents.some((item) => ua.indexOf(item.toUpperCase()) > 0);
 
-/**
- * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
- * @param value
- * @returns {boolean}
- */
-export const isArray = function (value: any): boolean {
-    return Object.prototype.toString.call(value) == '[object Array]';
-};
-
-/**
- * 打乱数组元素
- *
- */
-export const upset = function (arr: any[]) {
-    return arr.sort(function () {
-        return Math.random() - 0.5;
-    });
-};
+/********* string方法 **********/
 
 /**
  * 获取URL的参数
@@ -63,6 +46,68 @@ export const getByteLen = (val: string): number => {
     }
     return len;
 };
+
+/**
+ * 截取字符串 并添加...
+ * @param {string} str 内容
+ * @param {number} num 保留几个字符串，汉字算两个
+ * @param {boolean} showEllipsis - 是否显示省略号
+ */
+export const truncationFont = function (str: string, num: number, showEllipsis: boolean = true): string {
+    if (!str) {
+        return str;
+    }
+
+    let s = '';
+    for (let i of str) {
+        s += i;
+        if (getByteLen(s) > (num - 2) * 2) {
+            break;
+        }
+    }
+
+    return showEllipsis ? (str !== s ? s + '...' : str) : s;
+    // return getByteLen(str) <= num * 2 ? str : showEllipsis ? str.substr(0, num) + '...' : str.substr(0, num);
+};
+
+/**
+ * 给URL添加查询字符串
+ * @param {String} url
+ * @param {Object} obj
+ * @returns {string}
+ */
+export const setUrlQuery = function (url: string, obj: object = {}): string {
+    let p = [];
+    for (let key in obj) {
+        p.push(`${key}=${obj[key]}`);
+    }
+    return `${url}?${p.join('&')}`;
+};
+
+/********* string方法 end! **********/
+
+/***** Array 相关 */
+
+/**
+ * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
+ * @param value
+ * @returns {boolean}
+ */
+export const isArray = function (value: any): boolean {
+    return Object.prototype.toString.call(value) == '[object Array]';
+};
+
+/**
+ * 打乱数组元素
+ *
+ */
+export const upset = function (arr: any[]) {
+    return arr.sort(function () {
+        return Math.random() - 0.5;
+    });
+};
+
+/******Array 相关 end */
 
 /**
  *
@@ -289,4 +334,42 @@ export const getRemoteJSON = function (url: string, fn: Function) {
     //};
 
     request.send();
+};
+
+/**
+ * 倒计时
+ * @param {Number} times 秒
+ * @param {Function} callback
+ * @param {Function} endCallBack
+ */
+type time = string | number;
+export const countDown = (times: number, callback: Function, endCallBack: Function = () => {}): NodeJS.Timeout => {
+    var timer: any = null;
+
+    timer = setInterval(function () {
+        let day: time = 0;
+        let hour: time = 0;
+        let minute: time = 0;
+        let second: time = 0; //时间默认值
+        if (times > 0) {
+            day = Math.floor(times / (60 * 60 * 24));
+            hour = Math.floor(times / (60 * 60)) - day * 24;
+            minute = Math.floor(times / 60) - day * 24 * 60 - hour * 60;
+            second = Math.floor(times) - day * 24 * 60 * 60 - hour * 60 * 60 - minute * 60;
+        }
+        const day2hour = day * 24 + hour;
+        if (day <= 9) day = '0' + day;
+        if (hour <= 9) hour = '0' + hour;
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+
+        //console.log(times, hour, minute, second);
+        callback({ day, hour, minute, second, day2hour });
+        times--;
+        if (times <= 0) {
+            clearInterval(timer);
+            endCallBack();
+        }
+    }, 1000);
+    return timer;
 };
