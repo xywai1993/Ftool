@@ -25,27 +25,29 @@ jobs:
             - uses: actions/setup-node@v2
               with:
                   node-version: 15.8.0
-            - name: npm install and add version
+            - name: npm install and build
               run: |
                   npm install
-                  npm -v
+                  npm run tsbuild
 
             - name: write npmrc
               env:
                   TOKEN: ${{ secrets.NPM_TOKEN }}
               run: |
-                  echo '${{ secrets.NPM_TOKEN }}'    
                   echo '//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}' >.npmrc
 
             # - run: npm version patch
             # - uses: JS-DevTools/npm-publish@v1
             #   with:
             #       token: ${{ secrets.NPM_TOKEN }}
-            # - run: git config --global user.email 'yiper.fan@gmail.com'
-            # - run: git config --global user.name "yiper"
-            # - run: git add .
-            # - run: git commit -am 'github action 提交'
-            # - run: git push
-            - run: npm token
-            - run: npm whoami
-            - run: npm view
+            - name: update version and publish
+              run: |
+                  npm version patch
+                  npm publish
+            - name: git push
+              run: |
+                  git config --global user.email 'yiper.fan@gmail.com'
+                  git config --global user.name "yiper"
+                  git add .
+                  git commit -am 'github action 提交..发布新版本'
+                  git push
