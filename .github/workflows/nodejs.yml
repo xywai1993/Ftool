@@ -26,7 +26,10 @@ jobs:
               with:
                   node-version: 15.8.0
             - name: npm install and add version
-              run: npm install
+              run: |
+                  npm install
+                  npm -v
+
             - name: write npmrc
               env:
                   TOKEN: ${{ secrets.NPM_TOKEN }}
