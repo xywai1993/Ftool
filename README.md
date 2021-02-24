@@ -6,11 +6,13 @@
 
 # api 列表
 
+**带 ☑️ 为添加了测试**
+
 -   string 类
 
     -   getRequestParams 获取 URL 的参数
-    -   getByteLen 获取字符串长度 汉字算两个
-    -   truncationFont 截取字符串 并添加...
+    -   [x] getByteLen 获取字符串长度 汉字算两个
+    -   [x] truncationFont 截取字符串 并添加...
     -   setUrlQuery 给 URL 添加查询字符串
 
 -   array 类
