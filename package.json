@@ -1,6 +1,6 @@
 {
     "name": "@yiper.fan/ftool",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "常用工具函数",
     "main": "dist/Ftool.js",
     "type": "module",
