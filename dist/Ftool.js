@@ -54,7 +54,7 @@ export const truncationFont = function (str, num, showEllipsis = true) {
     let s = '';
     for (let i of str) {
         s += i;
-        if (getByteLen(s) > (num - 2) * 2) {
+        if (getByteLen(s) >= num) {
             break;
         }
     }
