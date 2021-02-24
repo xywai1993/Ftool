@@ -28,6 +28,7 @@ jobs:
             - name: npm install and build
               run: |
                   npm install
+                  npm run test
                   npm run tsbuild
 
             - name: write npmrc
