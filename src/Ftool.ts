@@ -2,7 +2,7 @@
  * author yiper.fan
  */
 
-const ua = navigator.userAgent.toUpperCase();
+const ua = navigator?.userAgent.toUpperCase();
 const Agents = ['Android', 'iPhone', 'Windows Phone', 'iPad', 'iPod'];
 
 export const IS_ANDROID = ua.indexOf('ANDROID') !== -1;
