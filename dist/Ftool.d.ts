@@ -1,10 +1,6 @@
 /**
  * author yiper.fan
  */
-export declare const IS_ANDROID: boolean;
-export declare const IS_IOS: boolean;
-export declare const IS_WECHAT: boolean;
-export declare const IS_PC: boolean;
 /********* string方法 **********/
 /**
  * 获取URL的参数
