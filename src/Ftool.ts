@@ -241,7 +241,7 @@ export const debounce = function (func: Function, wait: number, immediate: boole
 /**
  *
  * @param d  日期时间戳或者日期字符串 2021-10-06
- * @param fmt   格式化  格式
+ * @param {string} fmt   格式化的格式 'YYYY-MM-DD HH:mm:ss'
  * @returns {string}  格式化后的时间
  */
 
