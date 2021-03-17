@@ -204,9 +204,9 @@ export const debounce = function (func, wait, immediate) {
     };
 };
 /**
- *
- * @param d  日期时间戳或者日期字符串 2021-10-06
- * @param fmt   格式化  格式
+ * 格式化日期
+ * @param d  日期时间戳或者日期字符串 2021-10-06 ,时间戳为毫秒
+ * @param {string} fmt   格式化的格式 默认为 'YYYY-MM-DD HH:mm:ss'
  * @returns {string}  格式化后的时间
  */
 export const formatDate = function (d, fmt = 'YYYY-MM-DD HH:mm:ss') {
@@ -214,18 +214,21 @@ export const formatDate = function (d, fmt = 'YYYY-MM-DD HH:mm:ss') {
     if (typeof d === 'string') {
         date = new Date(d.replace(/-/g, '/'));
     }
-    if (typeof d === 'number') {
-        date = new Date(date);
+    else if (typeof d === 'number') {
+        date = new Date(d);
+    }
+    else {
+        console.warn('日期参数不合法');
+        return '1992-11-25 11:11:11';
     }
     var o = {
+        // 'Y+':date.getFullYear(),
         'M+': date.getMonth() + 1,
         'D+': date.getDate(),
         'h+': date.getHours() % 12 === 0 ? 12 : date.getHours() % 12,
         'H+': date.getHours(),
         'm+': date.getMinutes(),
         's+': date.getSeconds(),
-        'q+': Math.floor((date.getMonth() + 3) / 3),
-        S: date.getMilliseconds(),
     };
     var week = {
         '0': '\u65e5',
@@ -237,15 +240,24 @@ export const formatDate = function (d, fmt = 'YYYY-MM-DD HH:mm:ss') {
         '6': '\u516d',
     };
     if (/(Y+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
-    }
-    if (/(E+)/.test(fmt)) {
-        fmt = fmt.replace(RegExp.$1, (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? '\u661f\u671f' : '\u5468') : '') + week[date.getDay() + '']);
-    }
-    for (var k in o) {
-        if (new RegExp('(' + k + ')').test(fmt)) {
-            fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? String(o[k]) : ('00' + o[k]).substr(('' + o[k]).length));
+        // fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length));
+        const re = /(Y+)/;
+        const match = fmt.match(re);
+        if (match) {
+            fmt = fmt.replace(re, String(date.getFullYear()).substr(4 - match[0].length));
         }
+    }
+    // let re = /(Y+)/;
+    // if (/(E+)/.test(fmt)) {
+    //     fmt = fmt.replace(RegExp.$1, (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? '\u661f\u671f' : '\u5468') : '') + week[date.getDay() + '']);
+    // }
+    for (var k in o) {
+        // if (new RegExp('(' + k + ')').test(fmt)) {
+        //     fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? String(o[k]) : ('00' + o[k]).substr(('' + o[k]).length));
+        // }
+        const re = new RegExp(`${k}`);
+        // const match = fmt.match(re);
+        fmt = fmt.replace(re, o[k] < 10 ? `0${o[k]}` : o[k]);
     }
     return fmt;
 };

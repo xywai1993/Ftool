@@ -57,9 +57,9 @@ export declare const Falert: (message: object | string) => void;
  */
 export declare const debounce: (func: Function, wait: number, immediate: boolean) => (this: any) => Function;
 /**
- *
- * @param d  日期时间戳或者日期字符串 2021-10-06
- * @param fmt   格式化  格式
+ * 格式化日期
+ * @param d  日期时间戳或者日期字符串 2021-10-06 ,时间戳为毫秒
+ * @param {string} fmt   格式化的格式 默认为 'YYYY-MM-DD HH:mm:ss'
  * @returns {string}  格式化后的时间
  */
 export declare const formatDate: (d: string | number, fmt?: string) => string;
