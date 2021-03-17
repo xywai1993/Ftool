@@ -25,6 +25,8 @@ test('truncationFont', () => {
 test('formatDate', () => {
     // const h = (-480 - new Date().getTimezoneOffset()) * 3600;
 
+    //TODO: 暂时没想到好办法去处理服务器的时间来测试，
+    // 只有东八区才测
     if (new Date().getTimezoneOffset() === -480) {
         expect(formatDate(1615973183953, 'HH:mm:ss')).toBe('17:26:23');
         expect(formatDate(1615973183953, 'YYYY-MM-DD HH:mm:ss')).toBe('2021-03-17 17:26:23');

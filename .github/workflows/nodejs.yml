@@ -42,15 +42,14 @@ jobs:
             #   with:
             #       token: ${{ secrets.NPM_TOKEN }}
 
-            - name: git commit
+            - name: publish and push
               run: |
+                  npm version patch
                   git config --global user.email 'yiper.fan@gmail.com'
                   git config --global user.name "yiper"
                   git add .
                   git commit -am 'github action 提交..发布新版本'
-
-            - name: publish and push
-              run: |
-                  npm version patch
-                  npm publish
                   git push
+
+            - name: npm publish
+              run: npm publish
