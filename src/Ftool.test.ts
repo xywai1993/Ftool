@@ -23,13 +23,14 @@ test('truncationFont', () => {
 });
 
 test('formatDate', () => {
-    expect(formatDate(1615973183953, 'HH:mm:ss')).toBe('17:26:23');
-    expect(formatDate(1615973183953, 'YYYY-MM-DD HH:mm:ss')).toBe('2021-03-17 17:26:23');
-    expect(formatDate(1615973183953, 'YYYY-MM HH:mm:ss')).toBe('2021-03 17:26:23');
-    expect(formatDate(1615973183953, 'YY-MM-DD HH:mm:ss')).toBe('21-03-17 17:26:23');
-    expect(formatDate(1615973183953, 'YY-MM-DD HH:mm')).toBe('21-03-17 17:26');
-    expect(formatDate(1615973183953, 'YY-MM-DD HH')).toBe('21-03-17 17');
-    expect(formatDate(1615973183953, 'MM-DD HH')).toBe('03-17 17');
-    expect(formatDate(1615788299000, 'HH:mm:ss')).toBe('14:04:59');
-    expect(formatDate(1615971041343, 'YYYY-MM-DD')).toBe('2021-03-17');
+    const h = (-480 - new Date().getTimezoneOffset()) * 3600;
+    expect(formatDate(1615973183953 + h, 'HH:mm:ss')).toBe('17:26:23');
+    expect(formatDate(1615973183953 + h, 'YYYY-MM-DD HH:mm:ss')).toBe('2021-03-17 17:26:23');
+    expect(formatDate(1615973183953 + h, 'YYYY-MM HH:mm:ss')).toBe('2021-03 17:26:23');
+    expect(formatDate(1615973183953 + h, 'YY-MM-DD HH:mm:ss')).toBe('21-03-17 17:26:23');
+    expect(formatDate(1615973183953 + h, 'YY-MM-DD HH:mm')).toBe('21-03-17 17:26');
+    expect(formatDate(1615973183953 + h, 'YY-MM-DD HH')).toBe('21-03-17 17');
+    expect(formatDate(1615973183953 + h, 'MM-DD HH')).toBe('03-17 17');
+    expect(formatDate(1615788299000 + h, 'HH:mm:ss')).toBe('14:04:59');
+    expect(formatDate(1615971041343 + h, 'YYYY-MM-DD')).toBe('2021-03-17');
 });
