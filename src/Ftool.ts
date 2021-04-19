@@ -51,7 +51,7 @@ export const getByteLen = (val: string): number => {
  * 截取字符串 并添加...
  * @param {string} str 内容
  * @param {number} num 保留几个字符串，汉字算两个
- * @param {boolean} showEllipsis - 是否显示省略号
+ * @param {boolean} showEllipsis - 是否显示省略号 默认为true 显示
  */
 export const truncationFont = function (str: string, num: number, showEllipsis: boolean = true): string {
     if (!str) {
@@ -82,6 +82,31 @@ export const setUrlQuery = function (url: string, obj: { [index: string]: any } 
         p.push(`${key}=${obj[key]}`);
     }
     return `${url}?${p.join('&')}`;
+};
+
+/**
+ * 复制文本
+ * @param text 要复制的数据
+ */
+export const copy = (text: string) => {
+    const input = document.createElement('input');
+    input.setAttribute('readonly', 'readonly');
+    input.setAttribute('value', text);
+    // input.value = text;
+    document.body.appendChild(input);
+    input.setSelectionRange(0, 9999);
+    input.select();
+    console.log(document.execCommand('copy'), 'document.execCommand');
+
+    return new Promise((resolve, rejects) => {
+        if (document.execCommand('copy')) {
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            resolve(text);
+        } else {
+            rejects('当前环境不支持复制功能');
+        }
+    });
 };
 
 /********* string方法 end! **********/
@@ -382,29 +407,4 @@ export const countDown = (times: number, callback: Function, endCallBack: Functi
         }
     }, 1000);
     return timer;
-};
-
-/**
- * 复制文本
- * @param text 要复制的数据
- */
-export const copy = (text: string) => {
-    const input = document.createElement('input');
-    input.setAttribute('readonly', 'readonly');
-    input.setAttribute('value', text);
-    // input.value = text;
-    document.body.appendChild(input);
-    input.setSelectionRange(0, 9999);
-    input.select();
-    console.log(document.execCommand('copy'), 'document.execCommand');
-
-    return new Promise((resolve, rejects) => {
-        if (document.execCommand('copy')) {
-            document.execCommand('copy');
-            document.body.removeChild(input);
-            resolve(text);
-        } else {
-            rejects('当前环境不支持复制功能');
-        }
-    });
 };
