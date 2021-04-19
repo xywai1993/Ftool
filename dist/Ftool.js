@@ -247,10 +247,6 @@ export const formatDate = function (d, fmt = 'YYYY-MM-DD HH:mm:ss') {
             fmt = fmt.replace(re, String(date.getFullYear()).substr(4 - match[0].length));
         }
     }
-    // let re = /(Y+)/;
-    // if (/(E+)/.test(fmt)) {
-    //     fmt = fmt.replace(RegExp.$1, (RegExp.$1.length > 1 ? (RegExp.$1.length > 2 ? '\u661f\u671f' : '\u5468') : '') + week[date.getDay() + '']);
-    // }
     for (var k in o) {
         // if (new RegExp('(' + k + ')').test(fmt)) {
         //     fmt = fmt.replace(RegExp.$1, RegExp.$1.length === 1 ? String(o[k]) : ('00' + o[k]).substr(('' + o[k]).length));
