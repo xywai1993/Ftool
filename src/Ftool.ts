@@ -383,3 +383,28 @@ export const countDown = (times: number, callback: Function, endCallBack: Functi
     }, 1000);
     return timer;
 };
+
+/**
+ * 复制文本
+ * @param text 要复制的数据
+ */
+export const copy = (text: string) => {
+    const input = document.createElement('input');
+    input.setAttribute('readonly', 'readonly');
+    input.setAttribute('value', text);
+    // input.value = text;
+    document.body.appendChild(input);
+    input.setSelectionRange(0, 9999);
+    input.select();
+    console.log(document.execCommand('copy'), 'document.execCommand');
+
+    return new Promise((resolve, rejects) => {
+        if (document.execCommand('copy')) {
+            document.execCommand('copy');
+            document.body.removeChild(input);
+            resolve(text);
+        } else {
+            rejects('当前环境不支持复制功能');
+        }
+    });
+};
