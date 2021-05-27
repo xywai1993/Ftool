@@ -1,4 +1,4 @@
-import { getByteLen, truncationFont, formatDate } from './Ftool';
+import { getByteLen, truncationFont, formatDate, setUrlQuery } from './Ftool';
 // import { jest } from '@jest/globals';
 
 test('getByteLen', () => {
@@ -38,4 +38,12 @@ test('formatDate', () => {
         expect(formatDate(1615788299000, 'HH:mm:ss')).toBe('14:04:59');
         expect(formatDate(1615971041343, 'YYYY-MM-DD')).toBe('2021-03-17');
     }
+});
+
+test('setUrlQuery', () => {
+    expect(setUrlQuery('http://a.com', {})).toBe('http://a.com');
+    expect(setUrlQuery('http://a.com', { b: 1 })).toBe('http://a.com?b=1');
+    expect(setUrlQuery('http://a.com', { b: 1, c: 2 })).toBe('http://a.com?b=1&c=2');
+    expect(setUrlQuery('http://a.com', { b: '1', c: 2 })).toBe('http://a.com?b=1&c=2');
+    expect(setUrlQuery('http://a.com', { b: '1', c: 2, d: { a: 1 } })).toBe('http://a.com?b=1&c=2');
 });

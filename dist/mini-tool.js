@@ -1,12 +1,12 @@
 /**
- * author yiper.fan
+ * 此文件用于小程序
  */
-const ua = navigator?.userAgent.toUpperCase();
-const Agents = ['Android', 'iPhone', 'Windows Phone', 'iPad', 'iPod'];
-export const IS_ANDROID = ua.indexOf('ANDROID') !== -1;
-export const IS_IOS = ua.indexOf('IPHONE OS') !== -1;
-export const IS_WECHAT = ua.indexOf('MICROMESSENGER') !== -1;
-export const IS_PC = !Agents.some((item) => ua.indexOf(item.toUpperCase()) > 0);
+// const ua = navigator?.userAgent.toUpperCase();
+// const Agents = ['Android', 'iPhone', 'Windows Phone', 'iPad', 'iPod'];
+// export const IS_ANDROID = ua.indexOf('ANDROID') !== -1;
+// export const IS_IOS = ua.indexOf('IPHONE OS') !== -1;
+// export const IS_WECHAT = ua.indexOf('MICROMESSENGER') !== -1;
+// export const IS_PC = !Agents.some((item) => ua.indexOf(item.toUpperCase()) > 0);
 /********* string方法 **********/
 /**
  * 获取URL的参数
@@ -62,7 +62,7 @@ export const truncationFont = function (str, num, showEllipsis = true) {
     // return getByteLen(str) <= num * 2 ? str : showEllipsis ? str.substr(0, num) + '...' : str.substr(0, num);
 };
 /**
- * 给URL添加查询字符串 , 查询字符串类型不为 string或number 将被忽略
+ * 给URL添加查询字符串
  * @param {String} url
  * @param {Object} obj
  * @returns {string}
@@ -70,34 +70,10 @@ export const truncationFont = function (str, num, showEllipsis = true) {
 export const setUrlQuery = function (url, obj = {}) {
     let p = [];
     for (let key in obj) {
-        const type = [typeof 0, typeof '0'];
-        if (type.includes(typeof obj[key])) {
-            p.push(`${key}=${obj[key]}`);
-        }
+        p.push(`${key}=${obj[key]}`);
     }
-    return p.length ? `${url}?${p.join('&')}` : url;
+    return `${url}?${p.join('&')}`;
 };
-/********* string方法 end! **********/
-/***** Array 相关 */
-/**
- * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
- * @param value
- * @returns {boolean}
- */
-export const isArray = function (value) {
-    return Object.prototype.toString.call(value) == '[object Array]';
-};
-/**
- * 打乱数组元素
- *
- */
-export const upset = function (arr) {
-    return arr.sort(function () {
-        return Math.random() - 0.5;
-    });
-};
-/******Array 相关 end */
-/* DOM 相关   ********** */
 /**
  * 复制文本
  * @param text 要复制的数据
@@ -122,85 +98,26 @@ export const copy = (text) => {
         }
     });
 };
+/********* string方法 end! **********/
+/***** Array 相关 */
 /**
- *
- * 简易提示框
+ * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
+ * @param value
+ * @returns {boolean}
  */
-export const Falert = function (message) {
-    const dom = document.querySelector('#toolAlert');
-    const debugDom = dom ? dom : createAlertDom();
-    console.log(debugDom);
-    debugDom.style.display = 'block';
-    const messageDom = document.querySelector('#toolmessage');
-    messageDom.innerHTML = typeof message === typeof {} ? JSON.stringify(message) : message;
-    //debugDom.appendChild(messageDom);
-    function createAlertDom() {
-        let dom = document.createElement('div');
-        dom.id = 'toolAlert';
-        dom.style.cssText = 'display:none;background:rgba(0,0,0,.5);height:100%;width:100%;overflow:auto;position:fixed;left:0;top:0;z-index:99999';
-        dom.innerHTML = `
-            <div style="width: 88%;margin: 45% auto 0;background:#eeeeee;border-radius: 10px;">
-                <h4 id="toolmessage" style="padding: 20px 3px;text-align: center;word-break:break-all;"></h4>
-                <p style="text-align: center;padding: 10px 0;border-top:1px solid #a7a7de;">好</p>
-            </div>    
-		`;
-        const ElementBody = document.querySelector('body');
-        ElementBody.appendChild(dom);
-        dom.addEventListener('click', function (ev) {
-            if (ev.target.nodeName.toUpperCase() === 'P') {
-                dom.style.display = 'none';
-            }
-        }, false);
-        dom.addEventListener('touchmove', function (ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            return false;
-        }, false);
-        //dom.innerHTML = message;
-        return dom;
-    }
+export const isArray = function (value) {
+    return Object.prototype.toString.call(value) == '[object Array]';
 };
 /**
- * toast提示
- * @param message
- * @param params
- * @returns
+ * 打乱数组元素
+ *
  */
-export const Ftoast = function (message, params) {
-    const param = Object.assign({ time: 4000 }, params);
-    const id = 'toolToast';
-    const contentId = 'jsmessageToast';
-    const dom = document.querySelector(`#${id}`);
-    const debugDom = dom ? dom : createAlertDom(id);
-    debugDom.style.display = 'flex';
-    const messageDom = document.querySelector(`#${contentId}`);
-    if (messageDom) {
-        messageDom.innerHTML = typeof message === typeof {} ? JSON.stringify(message) : message;
-    }
-    //debugDom.appendChild(messageDom);
-    function createAlertDom(id) {
-        let dom = document.createElement('div');
-        dom.id = `${id}`;
-        dom.style.cssText =
-            'display:none;height:100vh;width:100%;overflow:auto;position:fixed;left:0;top:0;z-index:99999; flex-direction: column;justify-content: center;align-items: center;';
-        dom.innerHTML = `
-        <div style="background:rgba(0,0,0,.8);border-radius: 5px;">
-            <h4 id="${contentId}" style="padding: 10px 15px;text-align: center;word-break:break-all;color:#fff;"></h4>            
-        </div>    
-    `;
-        const body = document.querySelector('body');
-        body && body.appendChild(dom);
-        //dom.innerHTML = message;
-        return dom;
-    }
-    return new Promise((resolve, reject) => {
-        debugDom.style.display = 'flex';
-        setTimeout(() => {
-            debugDom.style.display = 'none';
-            resolve(true);
-        }, param.time);
+export const upset = function (arr) {
+    return arr.sort(function () {
+        return Math.random() - 0.5;
     });
 };
+/******Array 相关 end */
 /**
  *
  * @param func 要执行的方法

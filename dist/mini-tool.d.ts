@@ -1,10 +1,6 @@
 /**
- * author yiper.fan
+ * 此文件用于小程序
  */
-export declare const IS_ANDROID: boolean;
-export declare const IS_IOS: boolean;
-export declare const IS_WECHAT: boolean;
-export declare const IS_PC: boolean;
 /********* string方法 **********/
 /**
  * 获取URL的参数
@@ -25,14 +21,19 @@ export declare const getByteLen: (val: string) => number;
  */
 export declare const truncationFont: (str: string, num: number, showEllipsis?: boolean) => string;
 /**
- * 给URL添加查询字符串 , 查询字符串类型不为 string或number 将被忽略
+ * 给URL添加查询字符串
  * @param {String} url
  * @param {Object} obj
  * @returns {string}
  */
 export declare const setUrlQuery: (url: string, obj?: {
-    [index: string]: string | number;
+    [index: string]: any;
 }) => string;
+/**
+ * 复制文本
+ * @param text 要复制的数据
+ */
+export declare const copy: (text: string) => Promise<unknown>;
 /********* string方法 end! **********/
 /***** Array 相关 */
 /**
@@ -47,25 +48,6 @@ export declare const isArray: (value: any) => boolean;
  */
 export declare const upset: (arr: any[]) => any[];
 /******Array 相关 end */
-/**
- * 复制文本
- * @param text 要复制的数据
- */
-export declare const copy: (text: string) => Promise<unknown>;
-/**
- *
- * 简易提示框
- */
-export declare const Falert: (message: object | string) => void;
-/**
- * toast提示
- * @param message
- * @param params
- * @returns
- */
-export declare const Ftoast: (message: string, params?: {
-    time?: number | undefined;
-} | undefined) => Promise<unknown>;
 /**
  *
  * @param func 要执行的方法

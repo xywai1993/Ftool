@@ -71,17 +71,21 @@ export const truncationFont = function (str: string, num: number, showEllipsis: 
 };
 
 /**
- * 给URL添加查询字符串
+ * 给URL添加查询字符串 , 查询字符串类型不为 string或number 将被忽略
  * @param {String} url
  * @param {Object} obj
  * @returns {string}
  */
-export const setUrlQuery = function (url: string, obj: { [index: string]: any } = {}): string {
+export const setUrlQuery = function (url: string, obj: { [index: string]: string | number } = {}): string {
     let p = [];
     for (let key in obj) {
-        p.push(`${key}=${obj[key]}`);
+        const type = [typeof 0, typeof '0'];
+
+        if (type.includes(typeof obj[key])) {
+            p.push(`${key}=${obj[key]}`);
+        }
     }
-    return `${url}?${p.join('&')}`;
+    return p.length ? `${url}?${p.join('&')}` : url;
 };
 
 /********* string方法 end! **********/
