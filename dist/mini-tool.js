@@ -1,12 +1,6 @@
 /**
  * 此文件用于小程序
  */
-// const ua = navigator?.userAgent.toUpperCase();
-// const Agents = ['Android', 'iPhone', 'Windows Phone', 'iPad', 'iPod'];
-// export const IS_ANDROID = ua.indexOf('ANDROID') !== -1;
-// export const IS_IOS = ua.indexOf('IPHONE OS') !== -1;
-// export const IS_WECHAT = ua.indexOf('MICROMESSENGER') !== -1;
-// export const IS_PC = !Agents.some((item) => ua.indexOf(item.toUpperCase()) > 0);
 /********* string方法 **********/
 /**
  * 获取URL的参数
