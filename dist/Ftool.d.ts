@@ -17,7 +17,7 @@ export declare const getByteLen: (val: string) => number;
  * 截取字符串 并添加...
  * @param {string} str 内容
  * @param {number} num 保留几个字符串，汉字算两个
- * @param {boolean} showEllipsis - 是否显示省略号
+ * @param {boolean} showEllipsis - 是否显示省略号 默认为true 显示
  */
 export declare const truncationFont: (str: string, num: number, showEllipsis?: boolean) => string;
 /**
@@ -29,6 +29,11 @@ export declare const truncationFont: (str: string, num: number, showEllipsis?: b
 export declare const setUrlQuery: (url: string, obj?: {
     [index: string]: any;
 }) => string;
+/**
+ * 复制文本
+ * @param text 要复制的数据
+ */
+export declare const copy: (text: string) => Promise<unknown>;
 /********* string方法 end! **********/
 /***** Array 相关 */
 /**
