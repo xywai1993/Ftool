@@ -1,12 +1,12 @@
 /**
  * author yiper.fan
  */
-// const ua = navigator?.userAgent.toUpperCase();
-// const Agents = ['Android', 'iPhone', 'Windows Phone', 'iPad', 'iPod'];
-// export const IS_ANDROID = ua.indexOf('ANDROID') !== -1;
-// export const IS_IOS = ua.indexOf('IPHONE OS') !== -1;
-// export const IS_WECHAT = ua.indexOf('MICROMESSENGER') !== -1;
-// export const IS_PC = !Agents.some((item) => ua.indexOf(item.toUpperCase()) > 0);
+const ua = navigator?.userAgent.toUpperCase();
+const Agents = ['Android', 'iPhone', 'Windows Phone', 'iPad', 'iPod'];
+export const IS_ANDROID = ua.indexOf('ANDROID') !== -1;
+export const IS_IOS = ua.indexOf('IPHONE OS') !== -1;
+export const IS_WECHAT = ua.indexOf('MICROMESSENGER') !== -1;
+export const IS_PC = !Agents.some((item) => ua.indexOf(item.toUpperCase()) > 0);
 /********* string方法 **********/
 /**
  * 获取URL的参数
@@ -74,6 +74,27 @@ export const setUrlQuery = function (url, obj = {}) {
     }
     return `${url}?${p.join('&')}`;
 };
+/********* string方法 end! **********/
+/***** Array 相关 */
+/**
+ * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
+ * @param value
+ * @returns {boolean}
+ */
+export const isArray = function (value) {
+    return Object.prototype.toString.call(value) == '[object Array]';
+};
+/**
+ * 打乱数组元素
+ *
+ */
+export const upset = function (arr) {
+    return arr.sort(function () {
+        return Math.random() - 0.5;
+    });
+};
+/******Array 相关 end */
+/* DOM 相关   ********** */
 /**
  * 复制文本
  * @param text 要复制的数据
@@ -98,26 +119,6 @@ export const copy = (text) => {
         }
     });
 };
-/********* string方法 end! **********/
-/***** Array 相关 */
-/**
- * 判断值是否是数组 ，详细参考javascript高级程序设计第三版597页。
- * @param value
- * @returns {boolean}
- */
-export const isArray = function (value) {
-    return Object.prototype.toString.call(value) == '[object Array]';
-};
-/**
- * 打乱数组元素
- *
- */
-export const upset = function (arr) {
-    return arr.sort(function () {
-        return Math.random() - 0.5;
-    });
-};
-/******Array 相关 end */
 /**
  *
  * 简易提示框
@@ -157,37 +158,45 @@ export const Falert = function (message) {
     }
 };
 /**
- * 在页面中开一个控制台，打印调试信息
- * @param message  打印字符
- * @param {array} host - host列表，在此列表中的不会打印出log，可用于防止线上环境出现控制台
+ * toast提示
+ * @param message
+ * @param params
+ * @returns
  */
-const host = [];
-const debuglog = function (message) {
-    const arr = host;
-    if (arr.indexOf(location.host) !== -1) {
-        return;
+export const Ftoast = function (message, params) {
+    const param = Object.assign({ time: 4000 }, params);
+    const id = 'toolToast';
+    const contentId = 'jsmessageToast';
+    const dom = document.querySelector(`#${id}`);
+    const debugDom = dom ? dom : createAlertDom(id);
+    debugDom.style.display = 'flex';
+    const messageDom = document.querySelector(`#${contentId}`);
+    if (messageDom) {
+        messageDom.innerHTML = typeof message === typeof {} ? JSON.stringify(message) : message;
     }
-    const dom = document.querySelector('#debugDom');
-    const debugDom = dom ? dom : creatDom();
-    class CreatMessage {
-        constructor(message) {
-            this.messageDom = document.createElement('div');
-            this.message = typeof message === typeof {} ? JSON.stringify(message) : message;
-            this.messageDom.style.cssText = ' word-wrap:break-word';
-            this.messageDom.innerHTML = this.message;
-            debugDom.appendChild(this.messageDom);
-        }
-    }
-    function creatDom() {
+    //debugDom.appendChild(messageDom);
+    function createAlertDom(id) {
         let dom = document.createElement('div');
-        dom.id = 'debugDom';
-        dom.style.cssText = 'background:#000;color:#ffffff;width:100%;height:300px;overflow:auto; word-wrap:break-word';
-        const ElementBody = document.querySelector('body');
-        ElementBody.appendChild(dom);
+        dom.id = `${id}`;
+        dom.style.cssText =
+            'display:none;height:100vh;width:100%;overflow:auto;position:fixed;left:0;top:0;z-index:99999; flex-direction: column;justify-content: center;align-items: center;';
+        dom.innerHTML = `
+        <div style="background:rgba(0,0,0,.8);border-radius: 5px;">
+            <h4 id="${contentId}" style="padding: 10px 15px;text-align: center;word-break:break-all;color:#fff;"></h4>            
+        </div>    
+    `;
+        const body = document.querySelector('body');
+        body && body.appendChild(dom);
         //dom.innerHTML = message;
         return dom;
     }
-    return new CreatMessage(message);
+    return new Promise((resolve, reject) => {
+        debugDom.style.display = 'flex';
+        setTimeout(() => {
+            debugDom.style.display = 'none';
+            resolve(true);
+        }, param.time);
+    });
 };
 /**
  *

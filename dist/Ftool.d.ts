@@ -1,6 +1,10 @@
 /**
  * author yiper.fan
  */
+export declare const IS_ANDROID: boolean;
+export declare const IS_IOS: boolean;
+export declare const IS_WECHAT: boolean;
+export declare const IS_PC: boolean;
 /********* string方法 **********/
 /**
  * 获取URL的参数
@@ -29,11 +33,6 @@ export declare const truncationFont: (str: string, num: number, showEllipsis?: b
 export declare const setUrlQuery: (url: string, obj?: {
     [index: string]: any;
 }) => string;
-/**
- * 复制文本
- * @param text 要复制的数据
- */
-export declare const copy: (text: string) => Promise<unknown>;
 /********* string方法 end! **********/
 /***** Array 相关 */
 /**
@@ -49,10 +48,24 @@ export declare const isArray: (value: any) => boolean;
 export declare const upset: (arr: any[]) => any[];
 /******Array 相关 end */
 /**
+ * 复制文本
+ * @param text 要复制的数据
+ */
+export declare const copy: (text: string) => Promise<unknown>;
+/**
  *
  * 简易提示框
  */
 export declare const Falert: (message: object | string) => void;
+/**
+ * toast提示
+ * @param message
+ * @param params
+ * @returns
+ */
+export declare const Ftoast: (message: string, params?: {
+    time?: number | undefined;
+} | undefined) => Promise<unknown>;
 /**
  *
  * @param func 要执行的方法
@@ -81,4 +94,23 @@ export declare const postJSON: (url: string, data: object, fn: Function) => void
  * @param {Function} fn callback
  */
 export declare const getRemoteJSON: (url: string, fn: Function) => void;
-export declare const countDown: (times: number, callback: Function, endCallBack?: Function) => any;
+/**
+ * 倒计时
+ * @param {Number} times 倒计时所剩的秒  ，注意不是日期，请自行计算所剩多少秒
+ * @param {Function} callback
+ * @param {Function} endCallBack
+ */
+declare type time = string | number;
+declare type callbackData = {
+    day: time;
+    hour: time;
+    minute: time;
+    second: time;
+    /**
+     * eg: 1天2小时 ，则day2hour 返回 24+2 = 26
+     */
+    day2hour: time;
+};
+declare type callbackFn = (data: callbackData) => void;
+export declare const countDown: (times: number, callback: callbackFn, endCallBack?: Function) => any;
+export {};
